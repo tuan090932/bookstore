@@ -13,11 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    #return view('welcome');
-    return view('home');
 
-});
+Route::get('/','App\Http\Controllers\HomeController@index')->name('homepage');
+
+Route::get('/trang-quan-tri','App\Http\Controllers\DashBoardController@index')->name('dashboard');
+
+Route::get('/tac-gia/{id}','App\Http\Controllers\HomeController@viewAuthor')->name('viewAuthor');
+
+
+
 
 
 // người dùng nhấn enter :http://127.0.0.1:8000/timkiem  ->
@@ -28,12 +32,11 @@ Route::get('/timkiem', function () {
     return "đả tìm thấy";
 
 });
+Route::get('/home', 'App\Http\Controllers\HomeController@index');
 
-Route::get('',function (){
-    // có thể code bất cứ gì trong đây ko nhất thiết phải gọi model haoacjw viuew
 
-});
 
 Route::get('/unicode',function(){
     return 'hello';
 });
+

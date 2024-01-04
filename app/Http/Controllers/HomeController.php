@@ -2,64 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\a;
+use App\Models\Company; // import model compay 
+use App\Models\Slide; // import model compay 
+use App\Models\BaseClass; // import model compay 
+use App\Models\Author; // import model compay 
+
+use App\Models\Book; // import model compay 
+use Illuminate\Support\Facades\Input;
+
+use App\Http\Controllers\Homecontroller; // <-- Make sure this line is correct
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+   public function index(){
+      
+      $topCompany=Company::getTopCompany();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+      $slides=Slide::getSlidesIndex();
+      foreach (BaseClass::$categories as $value) {
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(a $a)
-    {
-        //
-    }
+          $booksSuggest[$value->id]=Book::getAllBookSuggestByCategoryId($listCate);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(a $a)
-    {
-        //
-    }
+          $booksHot[$value->id]=Book::getAllBookHotByCategoryId($listCate);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, a $a)
-    {
-        //
-    }
+          $booksNew[$value->id]=Book::getAllBookNewByCategoryId($listCate);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(a $a)
-    {
-        //
-    }
+      }
+      return BaseClass::handlingView('front-end.home',[
+                      'booksSuggest'      =>$booksSuggest,
+                      'booksHot'          =>$booksHot,
+                      'booksNew'          =>$booksNew,
+                      'slides'            =>$slides,
+                      'topCompany'        =>$topCompany,
+                  ]);
+      
+   
+
+   }
+   public function viewAuthor($authorId=0)
+   {
+       $authorInfo= Author::find($authorId);
+
+       if ($authorInfo!=null){
+           $books= Book::getAllBookByAuthorId($authorId); 
+
+           $total=Book::getTotalBookByAuthorId($authorId);   //lấy tổng số đơn hàng của user
+           
+           return BaseClass::handlingView('front-end.author',[
+                           'authorInfo'            =>$authorInfo,
+                           'books'                 =>$books,
+                           'pagination'            =>PaginationCustom::showPagination($total)
+                       ]);
+       }
+       else{
+           $authors= Author::getAllAuthor();
+
+           return BaseClass::handlingView('front-end.all-author',[
+                           'authors'               =>$authors,
+                       ]);
+       }
+   }
+
 }
+
+
