@@ -63,6 +63,21 @@ class Company extends Model
                         ");
     }
 
+
+    public static function getAllCompanyNames()
+    {
+        return self::pluck('company_name')->all();
+    }
+
+
+
+
+
+
+
+
+
+
 }
 
 

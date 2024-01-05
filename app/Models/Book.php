@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Book extends Model
 {
@@ -12,6 +13,16 @@ class Book extends Model
     static $limit =12;
 
     public $timestamps = true;
+
+
+    public static function getAllBooks()
+{
+    $bookNames = Book::take(20)->pluck('book_name'); // This will get the names of the first 10 books.
+    return $bookNames;
+}
+
+    
+    
         
 
     /**

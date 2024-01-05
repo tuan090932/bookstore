@@ -32,11 +32,15 @@ Route::get('/timkiem', function () {
     return "đả tìm thấy";
 
 });
-Route::get('/home', 'App\Http\Controllers\HomeController@index');
+//Route::get('/home', 'App\Http\Controllers\HomeController@index');
 
+//Route::get('/home', 'App\Http\Controllers\HomeController@getallcompany');
 
 
 Route::get('/unicode',function(){
     return 'hello';
 });
 
+
+
+Route::get('/home', 'App\Http\Controllers\HomeController@onepage_20book');
