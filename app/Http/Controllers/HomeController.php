@@ -34,12 +34,18 @@ class HomeController extends Controller {
         ]);
     }
 
-    public function onepage_20book(){
-        $allbook = Book::getAllBooks();
-        return view('home',compact('allbook'));
 
 
 
+
+    public function onepage_20book12($page_number = 0 ){
+        $perpage=10;
+    
+        $allbook = Book::getAllBooks($perpage,$page_number);
+        
+        //dd($allbook);
+        return view('front-end.home',compact('allbook'));
+        // return -> 
     }
     
 
@@ -47,32 +53,6 @@ class HomeController extends Controller {
 
 
 
-    public function getallcompany()
-    {
-        $companyNames = Company::getAllCompanyNames();
+  
 
-        // Now you can pass $companyNames to your view
-        return view('home', ['companyNames' => $companyNames])->renderSections()['content'];
-    }
-
-
-
-    public function viewAuthor($authorId=0) {
-        $authorInfo= Author::find($authorId);
-        if ($authorInfo!=null){
-            $books= Book::getAllBookByAuthorId($authorId); 
-            $total=Book::getTotalBookByAuthorId($authorId);   //lấy tổng số đơn hàng của user
-            return BaseClass::handlingView('front-end.author',[
-                'authorInfo'            =>$authorInfo,
-                'books'                 =>$books,
-                'pagination'            =>PaginationCustom::showPagination($total)
-            ]);
-        }
-        else{
-            $authors= Author::getAllAuthor();
-            return BaseClass::handlingView('front-end.all-author',[
-                'authors'               =>$authors,
-            ]);
-        }
-    }
 }

@@ -21,6 +21,7 @@ Route::get('/trang-quan-tri','App\Http\Controllers\DashBoardController@index')->
 Route::get('/tac-gia/{id}','App\Http\Controllers\HomeController@viewAuthor')->name('viewAuthor');
 
 
+Route::get('/tac-gia/{id}','App\Http\Controllers\HomeController@viewAuthor')->name('viewAuthor');
 
 
 
@@ -42,5 +43,4 @@ Route::get('/unicode',function(){
 });
 
 
-
-Route::get('/home', 'App\Http\Controllers\HomeController@onepage_20book');
+Route::get('/home/{page_number}', 'App\Http\Controllers\HomeController@onepage_20book12');
