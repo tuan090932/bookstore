@@ -27,16 +27,16 @@ class Category extends Model
     public function books()
     {
         return $this->hasMany('App\Book');
+
+
     }
-    public static function getCategoriesByParentID($parentID=0)
+
+    public static function show_cetegory()
     {
-        return Category::select('id','category_name')
-                        ->orderBy('order')
-                        ->where('parent_id', $parentID)
-                        ->get();
+       $show_cetegory = Category::query()->take(10)->get();
+       return $show_cetegory;
+
+        
     }
-    public static function getAll()
-    {
-        return Category::get();
-    }
+   
 }

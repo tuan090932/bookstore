@@ -22,6 +22,33 @@ class Book extends Model
        // dd($books);
         return $books;
     }
+    public static function find_1($item)
+    {
+        //$book =Book::table('books')->where('id',1);
+        //return $book;
+        $book = Book::find($item);
+        return $book;
+
+        
+
+
+    }
+    
+
+
+    public static function getallBookbytype($item)
+    {
+        //$book =Book::table('books')->where('id',1);
+        //return $book;
+        //-> nếu id = id --> return về array book 
+        $book = Book::where('category_id',$item)->get();
+
+       // dd($book);
+        return $book;
+
+        
+    }
+
 
 
 

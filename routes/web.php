@@ -44,3 +44,6 @@ Route::get('/unicode',function(){
 
 
 Route::get('/home/{page_number}', 'App\Http\Controllers\HomeController@onepage_20book12');
+Route::get('/home/{page_number}/Book/{id}', 'App\Http\Controllers\BookController@show');
+Route::get('home/{page_number}/category/{id}' , 'App\Http\Controllers\HomeController@show_book_category_type' );
+

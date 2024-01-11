@@ -42,11 +42,35 @@ class HomeController extends Controller {
         $perpage=10;
     
         $allbook = Book::getAllBooks($perpage,$page_number);
-        
+
+        $name_10_category = $this->show_10category();
+
+    
         //dd($allbook);
-        return view('front-end.home',compact('allbook'));
-        // return -> 
+        return view('front-end.home', compact('allbook', 'page_number','name_10_category' ));
     }
+
+
+
+
+    public function show_10category(){
+        $soluong = 10; // 10 name dau tien -> return name
+        $name_10_category = Category::show_cetegory();//-> trả về 1 array object 
+        return $name_10_category;
+        //dd($name_10_category);
+      //  return view('front-end.home', compact('name_10_category'));
+
+    }
+
+    public function show_book_category_type($page_number, $id){
+        $category_type =Book::getallBookbytype($id);
+       // dd($category_type);
+        //Lưu ý rằng thứ tự của các tham số trong phương thức controller phải khớp
+        // với thứ tự của chúng trong định nghĩa route1. Trong trường hợp của bạn, $page_number đến trước $id trong định nghĩa route, vì vậy nó cũng phải đến trước $id trong danh sách tham số của phương thức controller.
+        return view('front-end.category_book', compact('category_type' ));//trả về array
+
+    }
+    
     
 
 
