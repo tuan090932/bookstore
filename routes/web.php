@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/','App\Http\Controllers\HomeController@index')->name('homepage');
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('homepage');
 
-Route::get('/trang-quan-tri','App\Http\Controllers\DashBoardController@index')->name('dashboard');
+Route::get('/trang-quan-tri', 'App\Http\Controllers\DashBoardController@index')->name('dashboard');
 
-Route::get('/tac-gia/{id}','App\Http\Controllers\HomeController@viewAuthor')->name('viewAuthor');
+Route::get('/tac-gia/{id}', 'App\Http\Controllers\HomeController@viewAuthor')->name('viewAuthor');
 
 
-Route::get('/tac-gia/{id}','App\Http\Controllers\HomeController@viewAuthor')->name('viewAuthor');
+Route::get('/tac-gia/{id}', 'App\Http\Controllers\HomeController@viewAuthor')->name('viewAuthor');
 
 
 
@@ -31,19 +31,17 @@ Route::get('/tac-gia/{id}','App\Http\Controllers\HomeController@viewAuthor')->na
 Route::get('/timkiem', function () {
     #return view('welcome');
     return "đả tìm thấy";
-
 });
 //Route::get('/home', 'App\Http\Controllers\HomeController@index');
 
 //Route::get('/home', 'App\Http\Controllers\HomeController@getallcompany');
 
 
-Route::get('/unicode',function(){
+Route::get('/unicode', function () {
     return 'hello';
 });
 
 
 Route::get('/home/{page_number}', 'App\Http\Controllers\HomeController@onepage_20book12');
 Route::get('/home/{page_number}/Book/{id}', 'App\Http\Controllers\BookController@show');
-Route::get('home/{page_number}/category/{id}' , 'App\Http\Controllers\HomeController@show_book_category_type' );
-
+Route::get('home/{page_number}/category/{id}', 'App\Http\Controllers\HomeController@show_book_category_type');

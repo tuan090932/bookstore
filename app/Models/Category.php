@@ -9,14 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class Category extends Model
 {
-    protected $fillable = [
-        'category_name', 'parent_id', 'order'
-    ];
-    protected $table ='categories';
-    protected $guarded =[];
 
-    public $timestamps = false;
-    
     /**
      *
      *  relationship 1-n (1 Category - n Book)
@@ -24,19 +17,11 @@ class Category extends Model
      *  
      *
      */
-    public function books()
-    {
-        return $this->hasMany('App\Book');
-
-
-    }
-
     public static function show_cetegory()
     {
-       $show_cetegory = Category::query()->take(10)->get();
-       return $show_cetegory;
-
-        
+        // tư duy model -> sẽ lấy từ database và -> đối số thường url là truyền vào
+        // và sẽ trả về 1 mãng row hoặc  là 1 row của database bất kỳ
+        $show_cetegory = DB::table('categories')->take(10)->get();
+        return $show_cetegory;
     }
-   
 }
