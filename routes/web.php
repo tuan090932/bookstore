@@ -14,16 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', 'App\Http\Controllers\HomeController@index')->name('homepage');
-
-Route::get('/trang-quan-tri', 'App\Http\Controllers\DashBoardController@index')->name('dashboard');
-
-Route::get('/tac-gia/{id}', 'App\Http\Controllers\HomeController@viewAuthor')->name('viewAuthor');
-
-
-Route::get('/tac-gia/{id}', 'App\Http\Controllers\HomeController@viewAuthor')->name('viewAuthor');
-
-
 
 // người dùng nhấn enter :http://127.0.0.1:8000/timkiem  ->
 //dòng code nãy sẽ thực thi 

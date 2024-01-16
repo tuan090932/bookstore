@@ -2,82 +2,83 @@
 
 @section('content')
 
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-header">
-            <h2>{{$Book_current->book_name}}</h2>
+
+<style>
+    .custom-margin {
+        margin: 30px;
+    }
+
+    .mt-300 {
+        margin-top: 30px;
+        /* Custom margin */
+    }
+</style>
+
+<div id="cartDisplay" class="bg-light custom-margin">
+    <h5>Số lượng sách trong giỏ hàng: <span id="cartCount"></span></h5>
+    <a href="/cart" class="btn btn-secondary">Xem giỏ hàng</a>
+</div>
+
+
+<div class="container mt-300 border">
+
+    <div class="row">
+        <!-- Image Column -->
+        <div class="col-md-6">
+            <img src="path-to-your-image.jpg" class="img-fluid" alt="Responsive image">
+
+
+
         </div>
-        <div class="card-body">
-            <h5 class="card-title">Mô tả:</h5>
-            <h5>Số lượng sách mua <h5 class="card-title" id="cartCount"></h5>
-            </h5>
+        <!-- Description Column -->
+        <div class="col-md-6">
 
+            <div id="cartDisplay" class="position-fixed bg-light">
+                <h5>Số lượng sách trong giỏ hàng: <span id="cartCount"></span></h5>
+                <a href="/cart" class="btn btn-secondary">Xem giỏ hàng</a>
+            </div>
 
+            <div class="card">
+                <div class="card-header">
+                    <h2>{{$Book_current->book_name}}</h2>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Mô tả:</h5>
+                    </h5>
+                    <button id="buyButton" class="btn btn-primary" data-book-id="{{ $Book_current->id }}">Mua</button>
+                    <p class="card-text">{{$Book_current->description}}</p>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3 d-flex flex-column">
+                                <h5 class="card-title">Nhà xuất bản:</h5>
+                                <p class="card-text">{{$Book_current->publishing_house}}</p>
+                            </div>
 
-            <button id="buyButton" class="btn btn-primary" data-book-id="{{ $Book_current->id }}">Mua</button>
+                            <div class="col-3 d-flex flex-column">
 
+                                <h5 class="card-title">Số trang:</h5>
+                                <p class="card-text">{{$Book_current->number_of_pages}}</p>
+                            </div>
 
+                            <div class="col-3 d-flex flex-column">
+                                <h5 class="card-title">Giá:</h5>
+                                <p class="card-text">{{$Book_current->price}}</p>
 
-            <p class="card-text">{{$Book_current->description}}</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column">
+                                <h5 class="card-title">Giá bìa:</h5>
+                                <p class="card-text">{{$Book_current->cover_price}}</p>
 
-
-
-
-            <div class="container">
-
-
-                <div class="row">
-
-
-                    <div class="col-3 d-flex flex-column">
-
-
-
-                        <h5 class="card-title">Nhà xuất bản:</h5>
-                        <p class="card-text">{{$Book_current->publishing_house}}</p>
-
-
-
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="col-3 d-flex flex-column">
-
-                        <h5 class="card-title">Số trang:</h5>
-                        <p class="card-text">{{$Book_current->number_of_pages}}</p>
-
-
-                    </div>
-
-                    <div class="col-3 d-flex flex-column">
-
-
-                        <h5 class="card-title">Giá:</h5>
-                        <p class="card-text">{{$Book_current->price}}</p>
-
-                    </div>
-
-
-                    <div class="col-3 d-flex flex-column">
-
-
-                        <h5 class="card-title">Giá bìa:</h5>
-                        <p class="card-text">{{$Book_current->cover_price}}</p>
-
-                    </div>
-
-
-
-
                 </div>
 
 
             </div>
 
-
-
-
-
         </div>
+
     </div>
 
 

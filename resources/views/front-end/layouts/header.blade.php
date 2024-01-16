@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Laravel Site</title>
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Navbar</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
 
@@ -28,4 +30,5 @@
     <!-- Here is where your page content will be displayed -->
     @yield('content')
 </body>
+
 </html>
