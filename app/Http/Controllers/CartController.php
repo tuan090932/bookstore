@@ -25,14 +25,17 @@ class HomeController extends Controller
     private Category $category;
     private Author $author;
     private Company $company;
+    private CartItem $cartItem;
 
 
-    public function __construct(Book $book, Category $category, Author $author, Company $company)
+
+    public function __construct(Book $book, Category $category, Author $author, Company $company, CartItem $cartItem)
     {
         $this->book = $book;
         $this->category = $category;
         $this->author = $author;
         $this->company = $company;
+        $this->cartItem = $cartItem;
     }
     public function addToCart(Request $request)
     {
@@ -46,6 +49,16 @@ class HomeController extends Controller
         ]);
 
         return back()->with('success', 'Sản phẩm đã được thêm vào giỏ hàng!');
+    }
+    public function viewCart()
+    {
+        //   $userId = Auth::id(); // Lấy ID của người dùng hiện tại
+
+        // Lấy tất cả các mục trong giỏ hàng của người dùng
+        // $cartItems =  CartItem::where('user_id', $userId)->get();
+
+        // Gửi các mục giỏ hàng đến view
+        //  return view('cart', ['cartItems' => $cartItems]);
     }
 
 
@@ -88,16 +101,6 @@ class HomeController extends Controller
         return $name_10_category;
         //dd($name_10_category);
         //  return view('front-end.home', compact('name_10_category'));
-
-    }
-
-    public function show_book_category_type($page_number, $id)
-    {
-        $category_type = $this->book->getallBookbytype($id);
-        // dd($category_type);
-        //Lưu ý rằng thứ tự của các tham số trong phương thức controller phải khớp
-        // với thứ tự của chúng trong định nghĩa route1. Trong trường hợp của bạn, $page_number đến trước $id trong định nghĩa route, vì vậy nó cũng phải đến trước $id trong danh sách tham số của phương thức controller.
-        return view('front-end.category_book', compact('category_type')); //trả về array
 
     }
 }

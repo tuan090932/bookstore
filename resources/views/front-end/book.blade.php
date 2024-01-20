@@ -30,13 +30,15 @@
 
 
         </div>
-        <!-- Description Column -->
+        <!-- <button id="buyButton" class="btn btn-primary" data-book-id="{{ $Book_current->id }}">Mua</button> -->
         <div class="col-md-6">
 
             <div id="cartDisplay" class="position-fixed bg-light">
                 <h5>Số lượng sách trong giỏ hàng: <span id="cartCount"></span></h5>
                 <a href="/cart" class="btn btn-secondary">Xem giỏ hàng</a>
             </div>
+
+
 
             <div class="card">
                 <div class="card-header">
@@ -45,7 +47,13 @@
                 <div class="card-body">
                     <h5 class="card-title">Mô tả:</h5>
                     </h5>
-                    <button id="buyButton" class="btn btn-primary" data-book-id="{{ $Book_current->id }}">Mua</button>
+
+                    <form method="POST" action="/add-to-cart">
+                        @csrf
+                        <input type="hidden" name="book_id" value="{{ $Book_current->id }}">
+                        <button type="submit" class="btn btn-primary" id="buyButton" data-book-id="{{ $Book_current->id }}">Mua</button>
+                    </form>
+
                     <p class="card-text">{{$Book_current->description}}</p>
                     <div class="container">
                         <div class="row">
