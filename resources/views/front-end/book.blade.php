@@ -25,7 +25,7 @@
     <div class="row">
         <!-- Image Column -->
         <div class="col-md-6">
-            <img src="path-to-your-image.jpg" class="img-fluid" alt="Responsive image">
+            <img src="{{asset('storage/hinh-anh/anh-bia/_ng_m_n.jpg')}}" alt="" srcset="">
 
 
 

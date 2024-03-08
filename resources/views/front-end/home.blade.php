@@ -14,70 +14,99 @@
 --}}
 
 
+
+
 <div class="container">
     <div class="row">
-        @foreach ($name_10_category as $book_type)
-
-        <div class="col-2 d-flex flex-column">
-            <div class="card">
-                <p><a class="link-offset-2 link-underline link-underline-opacity-0" href="{{ url('/home/' . $page_number . '/category/' . $book_type->id) }}">{{$book_type->category_name}}</a></p>
-            </div>
-
+        <div class="col-md-4">
+            <h3>Chon loai sach</h1>
         </div>
-        @endforeach
+        <div class="col-md-8">
+            <select class="form-select" id="categorySelect" aria-label="Select Category">
+                @foreach ($name_10_category as $book_type)
+                <option value="{{ url('/home/' . $page_number . '/category/' . $book_type->id) }}">
+                    {{$book_type->category_name}}
+                </option>
+                @endforeach
+            </select>
+        </div>
     </div>
 </div>
 
 
+<script>
+document.getElementById('categorySelect').addEventListener('change', function() {
+    var url = this.value;
+    window.location.href = url;
+});
+</script>
+
+
+
 <div class="container">
     <div class="row">
-        @foreach ($name_10_Author as $Author)
-
-        <div class="col-2 d-flex flex-column">
-            <div class="card">
-                <p><a class="link-offset-2 link-underline link-underline-opacity-0" href="{{ url('/home/' . $page_number . '/category/' . $book_type->id) }}">{{$Author->author_name}}</a></p>
-            </div>
-
+        <div class="col-md-4">
+            <h3>Chon ten Tac Gia</h3>
         </div>
-        @endforeach
+        <div class="col-md-8">
+            <select class="form-select" id="categorySelect" aria-label="Select Category">
+                @foreach ($name_10_Author as $Author)
+                <option value="{{ url('/home/' . $page_number . '/category/' . $Author->id) }}">
+                    {{$Author->author_name}}
+                </option>
+                @endforeach
+            </select>
+        </div>
     </div>
 </div>
 
+<script>
+document.getElementById('categorySelect').addEventListener('change', function() {
+    var url = this.value;
+    window.location.href = url;
+});
+</script>
+
+
+
+
+
+
+
+
+
 
 <div class="container">
-    <div class="row">
-        @foreach ($name_10_Company as $Company)
+<div class="row">
+    @foreach ($allbook as $book)
+    <div class="col-3 d-flex flex-column" style="font-weight: bold; border: 2px solid lightblue; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);">
+    <!-- rest of your code -->
+        <p class="font-weight-bold h-75" style="width: 70%">{{$book->book_name}}</p>
+        <p >id ở trong database sách {{$book->id}}</p>
+   
 
-        <div class="col-2 d-flex flex-column">
-            <div class="card">
-                <p><a class="link-offset-2 link-underline link-underline-opacity-0" href="{{ url('/home/' . $page_number . '/category/' . $book_type->id) }}">{{$Company->company_name}}</a></p>
-            </div>
-
-        </div>
-        @endforeach
-    </div>
+        <div class="prices">
+<span class="price old-price" style="
+color: red;
+    position: relative;
+    top: 10px;
+">   €{{$book->price}}</span>
+<span class="price actual-price" style="
+    position: relative;
+    bottom: 25px;
+">€{{$book->cover_price}}</span>
 </div>
 
 
+        <h5><a href="{{ url('/home/' . $page_number . '/Book/' . $book->id) }}">xem thong tin chi tiet</a></h5>
 
-
-
-
-
-
-
-
-<div class="container">
-    <div class="row">
-        @foreach ($allbook as $book)
-        <div class="col-3 d-flex flex-column">
-            <p class="font-weight-bold h-75">{{$book->book_name}}</p>
-            <p>id ở trong database sách {{$book->id}}</p>
-            <h1> <a href="{{ url('/home/' . $page_number . '/Book/' . $book->id) }}"> xem thong tin chi tiet </a> </h1>
-            <img src="{{ asset('storage/hinh-anh/anh-bia/_ng_m_n.jpg') }}" class="img-fluid" alt="logo" class="img-size-50 mr-3 img-circle">
-        </div>
-        @endforeach
+        @php
+            $imagePath = str_replace('/storage/app/', 'storage/', $book->book_image);
+        @endphp
+        <img src="{{ asset($imagePath) }}" alt="" style="width: 200px; height: 200px;">
     </div>
+    @endforeach
+</div>
 
 
     <nav aria-label="Page navigation example">
@@ -120,18 +149,8 @@
                     pageLink.setAttribute('href', newHref);
                 }
             });
-
-
-
-
-
         });
     </script>
-
-
-
-
-
 </div>
 
 
