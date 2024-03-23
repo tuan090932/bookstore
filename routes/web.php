@@ -36,3 +36,26 @@ Route::get('/home/{page_number}', 'App\Http\Controllers\HomeController@onepage_2
 Route::get('/home/{page_number}/Book/{id}', 'App\Http\Controllers\BookController@show');
 Route::get('home/{page_number}/category/{id}', 'App\Http\Controllers\HomeController@show_book_category_type');
 Route::post('/add-to-cart', 'App\Http\Controllers\HomeController@addToCart');
+
+
+Route::get('/register', 'App\Http\Controllers\AuthController@getregister');
+Route::post('/register', 'App\Http\Controllers\AuthController@register');
+
+
+Route::get('/dashboard', 'App\Http\Controllers\AuthController@getdashboard')->name('dashboard');
+
+
+// routes/web.php
+Route::get('login', [App\Http\Controllers\AuthController::class, 'index'])->name('login');
+
+Route::middleware(['auth'])->group(function () {
+    //Route::get('login', [App\Http\Controllers\AuthController::class, 'index'])->name('login');
+    // Route::post('post-login', [App\Http\Controllers\AuthController::class, 'postLogin'])->name('login.post');
+    Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+    // Các route khác yêu cầu xác thực
+});
+
+
+Route::post('post-login', [App\Http\Controllers\AuthController::class, 'postLogin'])
+    ->middleware('login.validate')
+    ->name('login.post');

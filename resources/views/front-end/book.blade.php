@@ -21,73 +21,48 @@
 
 
 <div class="container mt-300 border">
-
-    <div class="row">
-        <!-- Image Column -->
-        <div class="col-md-6">
-            <img src="{{asset('storage/hinh-anh/anh-bia/_ng_m_n.jpg')}}" alt="" srcset="">
-
-
-
-        </div>
-        <!-- <button id="buyButton" class="btn btn-primary" data-book-id="{{ $Book_current->id }}">Mua</button> -->
-        <div class="col-md-6">
-
-            <div id="cartDisplay" class="position-fixed bg-light">
-                <h5>Số lượng sách trong giỏ hàng: <span id="cartCount"></span></h5>
-                <a href="/cart" class="btn btn-secondary">Xem giỏ hàng</a>
-            </div>
-
-
-
-            <div class="card">
-                <div class="card-header">
-                    <h2>{{$Book_current->book_name}}</h2>
+    <div class="container">
+        <div class="row">
+            <!-- Image Column -->
+            <div class="col-md-6">
+                <div class="book-image mb-4">
+                    <img src="{{ asset(str_replace('/storage/app/', 'storage/', $Book_current->book_image)) }}" class="img-fluid rounded shadow" alt="Book Cover">
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Mô tả:</h5>
-                    </h5>
-
-                    <form method="POST" action="/add-to-cart">
-                        @csrf
-                        <input type="hidden" name="book_id" value="{{ $Book_current->id }}">
-                        <button type="submit" class="btn btn-primary" id="buyButton" data-book-id="{{ $Book_current->id }}">Mua</button>
-                    </form>
-
-                    <p class="card-text">{{$Book_current->description}}</p>
-                    <div class="container">
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">{{$Book_current->book_name}}</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text mb-4">{{$Book_current->description}}</p>
                         <div class="row">
-                            <div class="col-3 d-flex flex-column">
-                                <h5 class="card-title">Nhà xuất bản:</h5>
-                                <p class="card-text">{{$Book_current->publishing_house}}</p>
+                            <div class="col-sm-6">
+                                <p class="mb-1"><strong>Nhà xuất bản:</strong> {{$Book_current->publishing_house}}</p>
+                                <p class="mb-1"><strong>Số trang:</strong> {{$Book_current->number_of_pages}}</p>
                             </div>
-
-                            <div class="col-3 d-flex flex-column">
-
-                                <h5 class="card-title">Số trang:</h5>
-                                <p class="card-text">{{$Book_current->number_of_pages}}</p>
-                            </div>
-
-                            <div class="col-3 d-flex flex-column">
-                                <h5 class="card-title">Giá:</h5>
-                                <p class="card-text">{{$Book_current->price}}</p>
-
-                            </div>
-                            <div class="col-3 d-flex flex-column">
-                                <h5 class="card-title">Giá bìa:</h5>
-                                <p class="card-text">{{$Book_current->cover_price}}</p>
-
+                            <div class="col-sm-6">
+                                <p class="mb-1"><strong>Giá:</strong> {{$Book_current->price}}</p>
+                                <p class="mb-1"><strong>Giá bìa:</strong> {{$Book_current->cover_price}}</p>
                             </div>
                         </div>
+                        <form method="POST" action="/add-to-cart" class="mt-4">
+                            @csrf
+                            <input type="hidden" name="book_id" value="{{ $Book_current->id }}">
+                            <button type="submit" class="btn btn-primary" id="buyButton" data-book-id="{{ $Book_current->id }}">Mua</button>
+                        </form>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
-
     </div>
+
+    <div id="cartDisplay" class="position-fixed bottom-0 end-0 m-3 p-3 bg-light rounded shadow">
+        <h5>Số lượng sách trong giỏ hàng: <span id="cartCount"></span></h5>
+        <a href="/cart" class="btn btn-secondary">Xem giỏ hàng</a>
+    </div>
+
+
 
 
     <script>

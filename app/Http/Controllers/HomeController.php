@@ -68,8 +68,8 @@ class HomeController extends Controller
 
 
 
-        //  $name_10_category = $this->show_10category();
-        // $allbook = Book::getAllBooks($perpage, $page_number);
+        //$name_10_category = $this->show_10category();
+        //$allbook = Book::getAllBooks($perpage, $page_number);
         //$a = $this->book->getAllBooks($perpage, $page_number);
 
         //dd($allbook);
